@@ -1,38 +1,146 @@
-.App {
+/* App.css */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #333; /* Dark background for dark mode */
+  font-family: "Arial", sans-serif;
+  color: #fff; /* Light text color for dark mode */
+}
+
+.game-container {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.game-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  background-color: #ff69b4; /* Pink background for the game title */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.game-board {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: #444; /* Slightly lighter background */
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Slightly stronger shadow */
+  padding: 20px;
+}
+
+.status {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.board-row {
+  display: flex;
+}
+
+.square {
+  width: 100px;
+  height: 100px;
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  background-color: #009688; /* Teal background */
+  color: #fff; /* White text */
+  border: 2px solid #009688; /* Teal border */
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin: 5px;
 }
 
-.App-link {
-  color: #61dafb;
+.square:hover {
+  background-color: #007766; /* Darker teal on hover */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.start-button {
+  background-color: #ff69b4; /* Pink button */
+  color: #fff;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin: auto;
+  margin-top: 5px;
+  margin-bottom: 25px;
+}
+
+.start-button:hover {
+  background-color: #005544; /* Darker teal on hover */
+}
+
+.level-buttons {
+  text-align: center;
+  margin: 20px;
+}
+
+.level-button {
+  background-color: #444; /* Slightly lighter background */
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-right: 10px;
+  transition: background-color 0.3s;
+  margin-bottom: 10px;
+}
+
+.level-button.selected {
+  background-color: #ff69b4;; /* Teal for selected level */
+  color: #fff;
+}
+
+
+
+.level-button:hover {
+  background-color: #007766; 
+  color: #fff;
+}
+
+.mode-button {
+  background-color: #444; /* Slightly lighter background */
+  color: #fff;
+  padding: 10px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-right: 10px;
+  transition: background-color 0.3s;
+  margin-bottom: 20px;
+}
+
+.mode-button.selected {
+  background-color: #ff69b4; /* Pink for selected mode */
+  color: #fff;
+}
+
+.mode-button:hover {
+  background-color: #007766; /* Darker teal on hover */
+  color: #fff;
+}
+
+.win-count {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 5px;
 }
