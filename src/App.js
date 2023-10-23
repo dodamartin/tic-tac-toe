@@ -132,13 +132,29 @@ const App = () => {
 
   const startGame = () => {
     setSquares(Array(9).fill(null));
-  
     setXIsNext(Math.random() >= 0.5);
-  
     setWinner(null);
     setGameStarted(true);
   };
-  
+
+  const renderLevelButtons = () => {
+    return (
+      <>
+        <button
+          onClick={() => handleLevelChange('easy')}
+          className={`level-button ${computerLevel === 'easy' ? 'selected' : ''}`}
+        >
+          Easy
+        </button>
+        <button
+          onClick={() => handleLevelChange('medium')}
+          className={`level-button ${computerLevel === 'medium' ? 'selected' : ''}`}
+        >
+          Medium
+        </button>
+      </>
+    );
+  };
 
   const renderGameModeButtons = () => {
     return (
@@ -162,53 +178,45 @@ const App = () => {
   const renderBoard = () => {
     if (gameStarted && (gameMode === 'computer' || gameMode === 'multiplayer')) {
       // Render the board only when the game has started and a valid game mode is selected.
-      return (
-        <>
-          <div className="level-buttons">
-            {gameMode === 'computer' && (
-              <>
-                <button
-                  onClick={() => handleLevelChange('easy')}
-                  className={`level-button ${computerLevel === 'easy' ? 'selected' : ''}`}
-                >
-                  Easy
-                </button>
-                <button
-                  onClick={() => handleLevelChange('medium')}
-                  className={`level-button ${computerLevel === 'medium' ? 'selected' : ''}`}
-                >
-                  Medium
-                </button>
-              </>
-            )}
+      if (gameMode === 'computer' && !computerLevel) {
+        return (
+          <div>
+            <p>Please select a computer level.</p>
+            {renderLevelButtons()}
           </div>
-          <div className="status">{getStatus()}</div>
-          <button onClick={startGame} className="start-button">
-            Start New Game
-          </button>
-          <div className="board-row">
-            {renderSquare(0)}
-            {renderSquare(1)}
-            {renderSquare(2)}
-          </div>
-          <div className="board-row">
-            {renderSquare(3)}
-            {renderSquare(4)}
-            {renderSquare(5)}
-          </div>
-          <div className="board-row">
-            {renderSquare(6)}
-            {renderSquare(7)}
-            {renderSquare(8)}
-          </div>
-
-          <div className="win-count">
-            <p>X Wins: {xWins}</p>
-            <p>O Wins: {oWins}</p>
-          </div>    
-        </>
-        
-      );
+        );
+      } else {
+        return (
+          <>
+            <div className="level-buttons">
+              {gameMode === 'computer' && renderLevelButtons()}
+            </div>
+            <div className="status">{getStatus()}</div>
+            <button onClick={startGame} className="start-button">
+              Start New Game
+            </button>
+            <div className="board-row">
+              {renderSquare(0)}
+              {renderSquare(1)}
+              {renderSquare(2)}
+            </div>
+            <div className="board-row">
+              {renderSquare(3)}
+              {renderSquare(4)}
+              {renderSquare(5)}
+            </div>
+            <div className="board-row">
+              {renderSquare(6)}
+              {renderSquare(7)}
+              {renderSquare(8)}
+            </div>
+            <div className="win-count">
+              <p>X Wins: {xWins}</p>
+              <p>O Wins: {oWins}</p>
+            </div>
+          </>
+        );
+      }
     }
   };
 
